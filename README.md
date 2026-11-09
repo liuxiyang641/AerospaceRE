@@ -30,40 +30,14 @@ AerospaceRE 是一个**中文航空航天领域低资源关系抽取**评测数�
 | 测试集 | 1,464 | `test.json` |
 | 合计 | 2,668 | — |
 
-27 种关系的标注示例如：「飞艇 —have_part→ 电传操纵系统」、「卫星 —target_of← 发射」、「钛合金 —applied_in→ 零件」。各关系的完整分布见 [`AerospaceRE_rel_proportion.pdf`](./AerospaceRE_rel_proportion.pdf)。
+关系标注示例（方向为 `h → t`）：「飞艇 —have_part→ 电传操纵系统」、「卫星 —target_of→ 发射」、「钛合金 —applied_in→ 零件」。各关系类型在整个数据集中的占比见图 1。
 
-| 关系 | Train | Dev | Test | 合计 |
-| --- | ---: | ---: | ---: | ---: |
-| `target_of` | 35 | 35 | 127 | 197 |
-| `have_target` | 31 | 31 | 107 | 169 |
-| `have_aspect` | 38 | 38 | 92 | 168 |
-| `aspect_of` | 30 | 31 | 91 | 152 |
-| `part_of` | 19 | 20 | 69 | 108 |
-| `affect` | 23 | 23 | 53 | 99 |
-| `apply` | 29 | 30 | 35 | 94 |
-| `perform` | 24 | 24 | 42 | 90 |
-| `performed_by` | 19 | 20 | 44 | 83 |
-| `applied_in` | 19 | 20 | 41 | 80 |
-| `have_part` | 17 | 18 | 42 | 77 |
-| `affected_by` | 18 | 19 | 29 | 66 |
-| `result_of` | 18 | 18 | 19 | 55 |
-| `have_result` | 16 | 15 | 16 | 47 |
-| `own` | 17 | 18 | 10 | 45 |
-| `have_event` | 16 | 13 | 9 | 38 |
-| `include_type` | 16 | 15 | 5 | 36 |
-| `owned_by` | 16 | 10 | 9 | 35 |
-| `occur_in` | 16 | 10 | 8 | 34 |
-| `type_of` | 16 | 12 | 3 | 31 |
-| `location_of` | 16 | 10 | 2 | 28 |
-| `located_in` | 12 | 12 | 2 | 26 |
-| `domain_of` | 16 | 6 | 2 | 24 |
-| `have_domain` | 11 | 8 | 3 | 22 |
-| `cooperate_with` | 11 | 8 | 2 | 21 |
-| `compete_with` | 2 | 2 | 0 | 4 |
-| `NA` | 118 | 119 | 602 | 839 |
-| **合计** | **619** | **585** | **1,464** | **2,668** |
+<p align="center">
+  <img src="figures/aerospacere_relation_distribution.png" alt="AerospaceRE 关系类型分布（占比 %）" width="780"/>
+</p>
 
-> 说明：`compete_with` 在全部数据中仅 4 条，测试集中无该关系实例。
+图 1：各关系类型在数据集中的占比（%，含 `NA`）。
+
 
 ### 3. 文件说明
 
@@ -72,7 +46,7 @@ AerospaceRE 是一个**中文航空航天领域低资源关系抽取**评测数�
 | `train.json` / `val.json` / `test.json` | 训练 / 验证 / 测试集关系标注（JSON Lines） |
 | `rel2id.json` | 关系标签到 id（0–26）的映射 |
 | `data_trans.ipynb` | 少样本子集生成脚本 |
-| `AerospaceRE_rel_proportion.pdf` | 关系类型分布图 |
+| `figures/aerospacere_relation_distribution.png` | 关系类型分布图 |
 | `aeroner.train` / `aeroner.dev` / `aeroner.test` | 原始 NER 数据（字符级 BMESO 标注） |
 
 ### 4. 数据格式
@@ -155,40 +129,14 @@ Each instance consists of a sentence together with one `(head entity h, tail ent
 | Test | 1,464 | `test.json` |
 | Total | 2,668 | — |
 
-The distribution of every relation is summarized below and visualized in [`AerospaceRE_rel_proportion.pdf`](./AerospaceRE_rel_proportion.pdf).
+The proportion of each relation type over the whole corpus is shown in Figure 1.
 
-| Relation | Train | Dev | Test | Total |
-| --- | ---: | ---: | ---: | ---: |
-| `target_of` | 35 | 35 | 127 | 197 |
-| `have_target` | 31 | 31 | 107 | 169 |
-| `have_aspect` | 38 | 38 | 92 | 168 |
-| `aspect_of` | 30 | 31 | 91 | 152 |
-| `part_of` | 19 | 20 | 69 | 108 |
-| `affect` | 23 | 23 | 53 | 99 |
-| `apply` | 29 | 30 | 35 | 94 |
-| `perform` | 24 | 24 | 42 | 90 |
-| `performed_by` | 19 | 20 | 44 | 83 |
-| `applied_in` | 19 | 20 | 41 | 80 |
-| `have_part` | 17 | 18 | 42 | 77 |
-| `affected_by` | 18 | 19 | 29 | 66 |
-| `result_of` | 18 | 18 | 19 | 55 |
-| `have_result` | 16 | 15 | 16 | 47 |
-| `own` | 17 | 18 | 10 | 45 |
-| `have_event` | 16 | 13 | 9 | 38 |
-| `include_type` | 16 | 15 | 5 | 36 |
-| `owned_by` | 16 | 10 | 9 | 35 |
-| `occur_in` | 16 | 10 | 8 | 34 |
-| `type_of` | 16 | 12 | 3 | 31 |
-| `location_of` | 16 | 10 | 2 | 28 |
-| `located_in` | 12 | 12 | 2 | 26 |
-| `domain_of` | 16 | 6 | 2 | 24 |
-| `have_domain` | 11 | 8 | 3 | 22 |
-| `cooperate_with` | 11 | 8 | 2 | 21 |
-| `compete_with` | 2 | 2 | 0 | 4 |
-| `NA` | 118 | 119 | 602 | 839 |
-| **Total** | **619** | **585** | **1,464** | **2,668** |
+<p align="center">
+  <img src="figures/aerospacere_relation_distribution.png" alt="AerospaceRE relation type distribution (proportion %)" width="780"/>
+</p>
 
-> Note: `compete_with` has only 4 instances in total and none in the test split.
+Figure 1: Proportion (%) of each relation type in AerospaceRE (including `NA`).
+
 
 ### 3. Repository Structure
 
@@ -197,7 +145,7 @@ The distribution of every relation is summarized below and visualized in [`Aeros
 | `train.json` / `val.json` / `test.json` | Relation annotations for train / dev / test (JSON Lines) |
 | `rel2id.json` | Relation label → id (0–26) mapping |
 | `data_trans.ipynb` | Few-shot subset generation script |
-| `AerospaceRE_rel_proportion.pdf` | Relation distribution figure |
+| `figures/aerospacere_relation_distribution.png` | Relation distribution figure |
 | `aeroner.train` / `aeroner.dev` / `aeroner.test` | Original NER data (character-level BMESO tagging) |
 
 ### 4. Data Format
